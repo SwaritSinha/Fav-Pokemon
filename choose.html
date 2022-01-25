@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POKEDEX</title>
+</head>
+<p>
+    Search and choose a pokemon
+</p>
+<body>
+  <div id="language-selector">
+    <select name="language" id="select" class="decorated" onchange="changeLanguage(this)">
+      <option id="optionLan" value="en">English</option>
+      <option id="optionLan" value="es">Español</option>
+    </select>
+  </div>
+  <div id="pokedex-container">
+    <div id="pokedex">
+      <div id="pokedex-left">
+      <div>
+        <div id="circle1">
+          <div id="light-circle1"></div>
+        </div>
+        <div id="circle2" class="circleRed">
+          <div class="light-circle2" id="light-circle2Red"></div>
+        </div>
+        <div id="circle2" class="circleYellow">
+          <div class="light-circle2" id="light-circle2Yellow"></div>
+        </div>
+        <div id="circle2" class="circleGreen">
+          <div class="light-circle2" id="light-circle2Green"></div>
+        </div>
+      </div>
+      <div id="screen-row">
+        <div id="screen-border">
+          <div id="top-screen-decoration">
+            <div id="circle3" style="margin-right: 20px"></div>
+            <div id="circle3" style="margin-left: 20px"></div>
+          </div>
+          <div id="screen">
+            <div id="picture-row">
+              <img id="picture" src=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png>
+            </div>
+            <div id="screen-row-info">
+              <div id="number-pokemon">001</div>
+              <div id="gender-container">
+                <svg id="male-icon" class="gender-icon gender-active" onclick="setGender('male')" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="mars" class="svg-inline--fa fa-mars fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M372 64h-79c-10.7 0-16 12.9-8.5 20.5l16.9 16.9-80.7 80.7c-22.2-14-48.5-22.1-76.7-22.1C64.5 160 0 224.5 0 304s64.5 144 144 144 144-64.5 144-144c0-28.2-8.1-54.5-22.1-76.7l80.7-80.7 16.9 16.9c7.6 7.6 20.5 2.2 20.5-8.5V76c0-6.6-5.4-12-12-12zM144 384c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"></path></svg>
+                <svg id="female-icon" class="gender-icon" onclick="setGender('female')" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="venus" class="svg-inline--fa fa-venus fa-w-9" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288 512"><path fill="currentColor" d="M288 176c0-79.5-64.5-144-144-144S0 96.5 0 176c0 68.5 47.9 125.9 112 140.4V368H76c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h36v36c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12v-36h36c6.6 0 12-5.4 12-12v-40c0-6.6-5.4-12-12-12h-36v-51.6c64.1-14.5 112-71.9 112-140.4zm-224 0c0-44.1 35.9-80 80-80s80 35.9 80 80-35.9 80-80 80-80-35.9-80-80z"></path></svg>
+              </div>
+            </div>
+          </div>
+          <div id="bottom-screen-decoration">
+            <div id="circle4"></div>
+            <div id="menu-button">
+              <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line y1="0.5" x2="22" y2="0.5" stroke="black"/>
+                <line y1="15.5" x2="22" y2="15.5" stroke="black"/>
+                <line y1="10.5" x2="22" y2="10.5" stroke="black"/>
+                <line y1="5.5" x2="22" y2="5.5" stroke="black"/>
+              </svg>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="name-row">
+        <div id="name-container">
+          <div id="name-screen">
+            Ditto
+          </div>
+          <div id="buttons-container">
+            <div id="button-red" onclick="clickNormalColor()">
+              <div id="light-button-red" class="light on"></div>
+            </div>
+            <div id="button-blue" onclick="clickShinyColor()">
+              <div id="light-button-blue" class="light off"></div>
+            </div>
+          </div>
+          <div id="arrows-container">
+            <div id="cross">
+          <div id="leftcross" onclick="clickLeftRight()">
+            <div id="leftT"></div>
+          </div>
+          <div id="topcross" onclick="clickUp()">
+            <div id="upT"></div>
+          </div>
+          <div id="rightcross" onclick="clickLeftRight()">
+            <div id="rightT"></div>
+          </div>
+          <div id="midcross">
+            <div id="midCircle"></div>
+          </div>
+          <div id="botcross" onclick="clickBottom()">
+            <div id="downT"></div>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div id="pokedex-right">
+        <div id="screen-description-row">
+          <div id="screen-description"></div>
+        </div>
+        <div id="numbers-buttons-row">
+          <div id="button-0" onclick="clickNumber('0')" class="number-button">0</div>
+          <div id="button-1" onclick="clickNumber('1')" class="number-button">1</div>
+          <div id="button-2" onclick="clickNumber('2')" class="number-button">2</div>
+          <div id="button-3" onclick="clickNumber('3')" class="number-button">3</div>
+          <div id="button-4" onclick="clickNumber('4')" class="number-button">4</div>
+          <div id="button-5" onclick="clickNumber('5')" class="number-button">5</div>
+          <div id="button-6" onclick="clickNumber('6')" class="number-button">6</div>
+          <div id="button-7" onclick="clickNumber('7')" class="number-button">7</div>
+          <div id="button-8" onclick="clickNumber('8')" class="number-button">8</div>
+          <div id="button-9" onclick="clickNumber('9')" class="number-button">9</div>
+        </div>
+        <div id="decoration-buttons">
+          <div id="deco-button"></div>
+          <div id="deco-button"></div>
+        </div>
+        <div id="types-row">
+          <div id="types-container">
+            <div id="type-box" style="border-right: none">
+              <img id="type1" class="type-pokemon" src=https://cdn2.bulbagarden.net/upload/7/74/GrassIC_Big.png>
+            </div>
+            <div id="type-box">
+              <img id="type2" class="type-pokemon" src=https://cdn2.bulbagarden.net/upload/3/3d/PoisonIC_Big.png>
+            </div>
+          </div>
+          <div id="deco-light"></div>
+        </div>
+        <div id="extra-info-pokemon-row">
+          <div class="extra-info-screen" id="extra-info-screen-1">Height: 7</div>
+          <div class="extra-info-screen" id="extra-info-screen-2">Weight: 69</div>
+        </div>
+      </div>
+      <svg id="mid-cilinder" width="54" height="456" viewBox="0 0 54 456" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_d_250_2)">
+    <path d="M4 3.70732C4 3.70732 17.8401 0 27 0C36.1599 0 50 3.70732 50 3.70732V444.878C50 444.878 36.1599 441.171 27 441.171C17.8401 441.171 4 444.878 4 444.878V3.70732Z" fill="#DC0A2D"/>
+    <path d="M49 4.48123V443.589C48.6919 443.513 48.3328 443.424 47.9289 443.327C46.4789 442.977 44.45 442.511 42.1323 442.044C37.5151 441.115 31.6843 440.171 27 440.171C22.3157 440.171 16.4849 441.115 11.8677 442.044C9.55003 442.511 7.52106 442.977 6.07111 443.327C5.66722 443.424 5.30809 443.513 5 443.589V4.48122C5.38364 4.38368 5.90543 4.25329 6.54016 4.10016C7.97147 3.75485 9.975 3.29436 12.2623 2.834C16.8552 1.90961 22.5243 1 27 1C31.4757 1 37.1448 1.90961 41.7377 2.834C44.025 3.29436 46.0285 3.75485 47.4598 4.10016C48.0946 4.25329 48.6164 4.38368 49 4.48123Z" stroke="black" stroke-width="2"/>
+    </g>
+    <path d="M6.29999 64.8781C6.29999 64.8781 18.8664 63.0244 27 63.0244C35.1336 63.0244 47.7 64.8781 47.7 64.8781" stroke="black" stroke-width="2"/>
+    <path d="M6.29999 72.2927C6.29999 72.2927 18.8664 70.439 27 70.439C35.1336 70.439 47.7 72.2927 47.7 72.2927" stroke="black" stroke-width="2"/>
+    <path d="M6.29999 368.878C6.29999 368.878 18.8664 367.024 27 367.024C35.1336 367.024 47.7 368.878 47.7 368.878" stroke="black" stroke-width="2"/>
+    <path d="M6.29999 376.293C6.29999 376.293 18.8664 374.439 27 374.439C35.1336 374.439 47.7 376.293 47.7 376.293" stroke="black" stroke-width="2"/>
+    <mask id="path-7-inside-1_250_2" fill="white">
+    <path d="M50 444.878C50 441.928 47.5768 439.099 43.2635 437.014C38.9501 434.928 33.1 433.756 27 433.756C20.9 433.756 15.0499 434.928 10.7365 437.014C6.42321 439.099 4 441.928 4 444.878L27 444.878H50Z"/>
+    </mask>
+    <path d="M50 444.878C50 441.928 47.5768 439.099 43.2635 437.014C38.9501 434.928 33.1 433.756 27 433.756C20.9 433.756 15.0499 434.928 10.7365 437.014C6.42321 439.099 4 441.928 4 444.878L27 444.878H50Z" fill="#89061C" stroke="black" stroke-width="4" mask="url(#path-7-inside-1_250_2)"/>
+    <defs>
+    <filter id="filter0_d_250_2" x="0" y="0" width="54" height="452.878" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+    <feOffset dy="4"/>
+    <feGaussianBlur stdDeviation="2"/>
+    <feComposite in2="hardAlpha" operator="out"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_250_2"/>
+    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_250_2" result="shape"/>
+    </filter>
+    </defs>
+    </svg>
+    </div>
+  </div>
+      <p>
+        Bulbasaur
+Ivysaur
+Venusaur
+Charmander
+Charmeleon
+Charizard
+Squirtle
+Wartortle
+Blastoise
+Caterpie
+Metapod
+Butterfree
+Weedle
+Kakuna
+Beedrill
+Pidgey
+Pidgeotto
+Pidgeot
+Rattata
+Raticate
+Spearow
+Fearow
+Ekans
+Arbok
+Pikachu
+Raichu
+Sandshrew
+Sandslash
+Nidoran♀
+Nidorina
+Nidoqueen
+Nidoran♂
+Nidorino
+Nidoking
+Clefairy
+Clefable
+Vulpix
+Ninetales
+Jigglypuff
+Wigglytuff
+Zubat
+Golbat
+Oddish
+Gloom
+Vileplume
+Paras
+Parasect
+Venonat
+Venomoth
+Diglett
+Dugtrio
+Meowth
+Persian
+Psyduck
+Golduck
+Mankey
+Primeape
+Growlithe
+Arcanine
+Poliwag
+Poliwhirl
+Poliwrath
+Abra
+Kadabra
+Alakazam
+Machop
+Machoke
+Machamp
+Bellsprout
+Weepinbell
+Victreebel
+Tentacool
+Tentacruel
+Geodude
+Graveler
+Golem
+Ponyta
+Rapidash
+Slowpoke
+Slowbro
+Magnemite
+Magneton
+Farfetch’d
+Doduo
+Dodrio
+Seel
+Dewgong
+Grimer
+Muk
+Shellder
+Cloyster
+Gastly
+Haunter
+Gengar
+Onix
+Drowzee
+Hypno
+Krabby
+Kingler
+Voltorb
+Electrode
+Exeggcute
+Exeggutor
+Cubone
+Marowak
+Hitmonlee
+Hitmonchan
+Lickitung
+Koffing
+Weezing
+Rhyhorn
+Rhydon
+Chansey
+Tangela
+Kangaskhan
+Horsea
+Seadra
+Goldeen
+Seaking
+Staryu
+Starmie
+Mr. Mime
+Scyther
+Jynx
+Electabuzz
+Magmar
+Pinsir
+Tauros
+Magikarp
+Gyarados
+Lapras
+Ditto
+Eevee
+Vaporeon
+Jolteon
+Flareon
+Porygon
+Omanyte
+Omastar
+Kabuto
+Kabutops
+Aerodactyl
+Snorlax
+Articuno
+Zapdos
+Moltres
+Dratini
+Dragonair
+Dragonite
+Mewtwo
+Mew
+Chikorita
+Bayleef
+Meganium
+Cyndaquil
+Quilava
+Typhlosion
+Totodile
+Croconaw
+Feraligatr
+Sentret
+Furret
+Hoothoot
+Noctowl
+Ledyba
+Ledian
+Spinarak
+Ariados
+Crobat
+Chinchou
+Lanturn
+Pichu
+Cleffa
+Igglybuff
+Togepi
+Togetic
+Natu
+Xatu
+Mareep
+Flaaffy
+Ampharos
+Bellossom
+Marill
+Azumarill
+Sudowoodo
+Politoed
+Hoppip
+Skiploom
+Jumpluff
+Aipom
+Sunkern
+Sunflora
+Yanma
+Wooper
+Quagsire
+Espeon
+Umbreon
+Murkrow
+Slowking
+Misdreavus
+Unown
+Wobbuffet
+Girafarig
+Pineco
+Forretress
+Dunsparce
+Gligar
+Steelix
+Snubbull
+Granbull
+Qwilfish
+Scizor
+Shuckle
+Heracross
+Sneasel
+Teddiursa
+Ursaring
+Slugma
+Magcargo
+Swinub
+Piloswine
+Corsola
+Remoraid
+Octillery
+Delibird
+Mantine
+Skarmory
+Houndour
+Houndoom
+Kingdra
+Phanpy
+Donphan
+Porygon2
+Stantler
+Smeargle
+Tyrogue
+Hitmontop
+Smoochum
+Elekid
+Magby
+Miltank
+Blissey
+Raikou
+Entei
+Suicune
+Larvitar
+Pupitar
+Tyranitar
+Lugia
+Ho-Oh
+Celebi
+Treecko
+Grovyle
+Sceptile
+Torchic
+Combusken
+Blaziken
+Mudkip
+Marshtomp
+Swampert
+Poochyena
+Mightyena
+Zigzagoon
+Linoone
+Wurmple
+Silcoon
+Beautifly
+Cascoon
+Dustox
+Lotad
+Lombre
+Ludicolo
+Seedot
+Nuzleaf
+Shiftry
+Taillow
+Swellow
+Wingull
+Pelipper
+Ralts
+Kirlia
+Gardevoir
+Surskit
+Masquerain
+Shroomish
+Breloom
+Slakoth
+Vigoroth
+Slaking
+Nincada
+Ninjask
+Shedinja
+Whismur
+Loudred
+Exploud
+Makuhita
+Hariyama
+Azurill
+Nosepass
+Skitty
+Delcatty
+Sableye
+Mawile
+Aron
+Lairon
+Aggron
+Meditite
+Medicham
+Electrike
+Manectric
+Plusle
+Minun
+Volbeat
+Illumise
+Roselia
+Gulpin
+Swalot
+Carvanha
+Sharpedo
+Wailmer
+Wailord
+Numel
+Camerupt
+Torkoal
+Spoink
+Grumpig
+Spinda
+Trapinch
+Vibrava
+Flygon
+Cacnea
+Cacturne
+Swablu
+Altaria
+Zangoose
+Seviper
+Lunatone
+Solrock
+Barboach
+Whiscash
+Corphish
+Crawdaunt
+Baltoy
+Claydol
+Lileep
+Cradily
+Anorith
+Armaldo
+Feebas
+Milotic
+Castform
+Kecleon
+Shuppet
+Banette
+Duskull
+Dusclops
+Tropius
+Chimecho
+Absol
+Wynaut
+Snorunt
+Glalie
+Spheal
+Sealeo
+Walrein
+Clamperl
+Huntail
+Gorebyss
+Relicanth
+Luvdisc
+Bagon
+Shelgon
+Salamence
+Beldum
+Metang
+Metagross
+Regirock
+Regice
+Registeel
+Latias
+Latios
+Kyogre
+Groudon
+Rayquaza
+Jirachi
+Deoxys
+Turtwig
+Grotle
+Torterra
+Chimchar
+Monferno
+Infernape
+Piplup
+Prinplup
+Empoleon
+Starly
+Staravia
+Staraptor
+Bidoof
+Bibarel
+Kricketot
+Kricketune
+Shinx
+Luxio
+Luxray
+Budew
+Roserade
+Cranidos
+Rampardos
+Shieldon
+Bastiodon
+Burmy
+Wormadam
+Mothim
+Combee
+Vespiquen
+Pachirisu
+Buizel
+Floatzel
+Cherubi
+Cherrim
+Shellos
+Gastrodon
+Ambipom
+Drifloon
+Drifblim
+Buneary
+Lopunny
+Mismagius
+Honchkrow
+Glameow
+Purugly
+Chingling
+Stunky
+Skuntank
+Bronzor
+Bronzong
+Bonsly
+Mime Jr.
+Happiny
+Chatot
+Spiritomb
+Gible
+Gabite
+Garchomp
+Munchlax
+Riolu
+Lucario
+Hippopotas
+Hippowdon
+Skorupi
+Drapion
+Croagunk
+Toxicroak
+Carnivine
+Finneon
+Lumineon
+Mantyke
+Snover
+Abomasnow
+Weavile
+Magnezone
+Lickilicky
+Rhyperior
+Tangrowth
+Electivire
+Magmortar
+Togekiss
+Yanmega
+Leafeon
+Glaceon
+Gliscor
+Mamoswine
+Porygon-Z
+Gallade
+Probopass
+Dusknoir
+Froslass
+Rotom
+Uxie
+Mesprit
+Azelf
+Dialga
+Palkia
+Heatran
+Regigigas
+Giratina
+Cresselia
+Phione
+Manaphy
+Darkrai
+Shaymin
+Arceus
+Victini
+Snivy
+Servine
+Serperior
+Tepig
+Pignite
+Emboar
+Oshawott
+Dewott
+Samurott
+Patrat
+Watchog
+Lillipup
+Herdier
+Stoutland
+Purrloin
+Liepard
+Pansage
+Simisage
+Pansear
+Simisear
+Panpour
+Simipour
+Munna
+Musharna
+Pidove
+Tranquill
+Unfezant
+Blitzle
+Zebstrika
+Roggenrola
+Boldore
+Gigalith
+Woobat
+Swoobat
+Drilbur
+Excadrill
+Audino
+Timburr
+Gurdurr
+Conkeldurr
+Tympole
+Palpitoad
+Seismitoad
+Throh
+Sawk
+Sewaddle
+Swadloon
+Leavanny
+Venipede
+Whirlipede
+Scolipede
+Cottonee
+Whimsicott
+Petilil
+Lilligant
+Basculin
+Sandile
+Krokorok
+Krookodile
+Darumaka
+Darmanitan
+Maractus
+Dwebble
+Crustle
+Scraggy
+Scrafty
+Sigilyph
+Yamask
+Cofagrigus
+Tirtouga
+Carracosta
+Archen
+Archeops
+Trubbish
+Garbodor
+Zorua
+Zoroark
+Minccino
+Cinccino
+Gothita
+Gothorita
+Gothitelle
+Solosis
+Duosion
+Reuniclus
+Ducklett
+Swanna
+Vanillite
+Vanillish
+Vanilluxe
+Deerling
+Sawsbuck
+Emolga
+Karrablast
+Escavalier
+Foongus
+Amoonguss
+Frillish
+Jellicent
+Alomomola
+Joltik
+Galvantula
+Ferroseed
+Ferrothorn
+Klink
+Klang
+Klinklang
+Tynamo
+Eelektrik
+Eelektross
+Elgyem
+Beheeyem
+Litwick
+Lampent
+Chandelure
+Axew
+Fraxure
+Haxorus
+Cubchoo
+Beartic
+Cryogonal
+Shelmet
+Accelgor
+Stunfisk
+Mienfoo
+Mienshao
+Druddigon
+Golett
+Golurk
+Pawniard
+Bisharp
+Bouffalant
+Rufflet
+Braviary
+Vullaby
+Mandibuzz
+Heatmor
+Durant
+Deino
+Zweilous
+Hydreigon
+Larvesta
+Volcarona
+Cobalion
+Terrakion
+Virizion
+Tornadus
+Thundurus
+Reshiram
+Zekrom
+Landorus
+Kyurem
+Keldeo
+Meloetta
+Genesect
+Chespin
+Quilladin
+Chesnaught
+Fennekin
+Braixen
+Delphox
+Froakie
+Frogadier
+Greninja
+Bunnelby
+Diggersby
+Fletchling
+Fletchinder
+Talonflame
+Scatterbug
+Spewpa
+Vivillon
+Litleo
+Pyroar
+Flabébé
+Floette
+Florges
+Skiddo
+Gogoat
+Pancham
+Pangoro
+Furfrou
+Espurr
+Meowstic
+Honedge
+Doublade
+Aegislash
+Spritzee
+Aromatisse
+Swirlix
+Slurpuff
+Inkay
+Malamar
+Binacle
+Barbaracle
+Skrelp
+Dragalge
+Clauncher
+Clawitzer
+Helioptile
+Heliolisk
+Tyrunt
+Tyrantrum
+Amaura
+Aurorus
+Sylveon
+Hawlucha
+Dedenne
+Carbink
+Goomy
+Sliggoo
+Goodra
+Klefki
+Phantump
+Trevenant
+Pumpkaboo
+Gourgeist
+Bergmite
+Avalugg
+Noibat
+Noivern
+Xerneas
+Yveltal
+Zygarde
+Diancie
+Hoopa
+Volcanion
+Rowlet
+Dartrix
+Decidueye
+Litten
+Torracat
+Incineroar
+Popplio
+Brionne
+Primarina
+Pikipek
+Trumbeak
+Toucannon
+Yungoos
+Gumshoos
+Grubbin
+Charjabug
+Vikavolt
+Crabrawler
+Crabominable
+Oricorio
+Cutiefly
+Ribombee
+Rockruff
+Lycanroc
+Wishiwashi
+Mareanie
+Toxapex
+Mudbray
+Mudsdale
+Dewpider
+Araquanid
+Fomantis
+Lurantis
+Morelull
+Shiinotic
+Salandit
+Salazzle
+Stufful
+Bewear
+Bounsweet
+Steenee
+Tsareena
+Comfey
+Oranguru
+Passimian
+Wimpod
+Golisopod
+Sandygast
+Palossand
+Pyukumuku
+Type: Null
+Silvally
+Minior
+Komala
+Turtonator
+Togedemaru
+Mimikyu
+Bruxish
+Drampa
+Dhelmise
+Jangmo-o
+Hakamo-o
+Kommo-o
+Tapu Koko
+Tapu Lele
+Tapu Bulu
+Tapu Fini
+Cosmog
+Cosmoem
+Solgaleo
+Lunala
+Nihilego
+Buzzwole
+Pheromosa
+Xurkitree
+Celesteela
+Kartana
+Guzzlord
+Necrozma
+Magearna
+Marshadow
+Poipole 
+Naganadel 
+Stakataka 
+Blacephalon 
+Zeraora 
+Meltan 
+Melmetal
+Grookey
+Thwackey
+Rillaboom
+Scorbunny
+Raboot
+Cinderace
+Sobble
+Drizzile 
+Inteleon
+Skwovet
+Greedent
+Rookidee 
+Corvisquire
+Corviknight
+Blipbug
+Dottler
+Orbeetle
+Nickit
+Thievul
+Gossifleur
+Eldegoss
+Wooloo
+Dubwool
+Chewtle 
+Drednaw
+Yamper
+Boltund
+Rolycoly
+Carkol
+Coalossal
+Applin
+Flapple 
+Appletun
+Silicobra
+Sandaconda
+Cramorant
+Arrokuda
+Barraskewda
+Toxel
+Toxtricity
+Sizzlipede
+Centiskorch
+Clobbopus
+Grapploct 
+Sinistea
+Polteageist
+Hatenna
+Hattrem
+Hatterene
+Impidimp
+Morgrem
+Grimmsnarl
+Obstagoon
+Perrserker
+Cursola
+Sirfetch’d
+Mr. Rime
+Runerigus
+Milcery
+Alcremie
+Falinks
+Pincurchin
+Snom
+Frosmoth
+Stonjourner
+Eiscue
+Indeedee
+Morpeko
+Cufant
+Copperajah
+Dracozolt
+Arctozolt
+Dracovish
+Arctovish
+Duraludon
+Dreepy
+Drakloak
+Dragapult
+Zacian
+Zamazenta
+Eternatus
+Kubfu
+Urshifu
+Zarude
+Regieleki 
+Regidrago
+Glastrier
+Spectrier
+Calyrex
+
+
+    </p>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
+
+body{
+	background-image: url("data:image/svg+xml,%3Csvg width='76' height='76' viewBox='0 0 76 76' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='76' height='76' fill='%23E5CFAF'/%3E%3Ccircle cx='38' cy='38' r='23' stroke='%23C07C2B' stroke-width='2'/%3E%3Cline x1='14' y1='37.558' x2='31.8605' y2='37.558' stroke='%23C07C2B' stroke-width='2'/%3E%3Cline x1='43.0233' y1='37.558' x2='60.8837' y2='37.558' stroke='%23C07C2B' stroke-width='2'/%3E%3Ccircle cx='37.4419' cy='37.4418' r='5.69767' stroke='%23C07C2B' stroke-width='2'/%3E%3Ccircle cx='37.4418' cy='37.4418' r='1.73256' stroke='%23C07C2B'/%3E%3C/svg%3E");
+  background-color: #E5CFAF;
+  font-family: algerian;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+#language-selector{
+  display: flex;
+  justify-content: flex-end;
+}
+select {
+  width: 150px;
+  height: 44px;
+  font-size: 15px;
+  background-color: #232323;
+  color: #DEDEDE;
+  border: 5px solid #DEDEDE;
+  font-family: 'VT323', monospace;
+  font-size: 27px;
+}
+#optionLan:hover {
+  background-color: #C07C2B !important;
+}
+#pokedex-container{
+  display: flex;
+  justify-content: center;
+}
+#pokedex{
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+#pokedex-left{
+  background-color: #dc0a2d;
+  border-radius: 7px;
+  border: 2px solid #000000;
+  box-shadow: 2px 2px #89061c,
+              3px 3px #89061c,
+              4px 4px #89061c,
+              5px 5px #89061c,
+              6px 6px #89061c,
+              7px 7px #89061c,
+              8px 8px #89061c,
+              9px 9px #000000;
+  width: 500px;
+  height: 600px;
+}
+#pokedex-right{
+  background-color: #dc0a2d;
+  border-radius: 7px;
+  border: 2px solid #000000;
+  box-shadow: 2px 2px #89061c,
+              3px 3px #89061c,
+              4px 4px #89061c,
+              5px 5px #89061c,
+              6px 6px #89061c,
+              7px 7px #89061c,
+              8px 8px #89061c,
+              9px 9px #000000;
+  width: 410px;
+  height: 530px;
+  padding-right: 40px;
+  padding-left: 50px;
+}
+#mid-cilinder{
+  position: relative;
+  right: 531px;
+  bottom: 10px;
+}
+#circle1{
+  width: 70px;
+  height: 70px;
+  background-color: #146b9f;
+  border-radius: 50%;
+  box-shadow: 
+    0 0 0 1px #000000,
+    0 0 0 15px #e9eef3,
+    0 0 0 16px #000000;
+  position: relative;
+  top: 35px;
+  left: 35px;
+}
+#light-circle1{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  position: relative;
+  top: 17px;
+  left: 17px;
+  animation: lightCircle1Blinks 5s ease 0s infinite alternate none;
+}
+@keyframes lightCircle1Blinks{
+  0%{
+    background-color: #146b9f;
+    box-shadow: none;
+  }
+  97%{
+    background-color: #146b9f;
+    box-shadow: none;
+  }
+  100%{
+    background-color: rgb(0 255 255 / 25%);
+    box-shadow: 0 0 40px 0 #0ff;
+  }
+}
+#circle2{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: relative;
+  border: 1px solid #000000;
+}
+.light-circle2{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: relative;
+  top: 5px;
+  left: 5px;
+}
+.circleRed{
+  background-color: #710000;
+  top: -35px;
+  left: 135px;
+}
+#light-circle2Red{
+  animation: circle2RedBlinks 2s ease 3s infinite;
+}
+@keyframes circle2RedBlinks{
+  0%{
+    background-color: #710000;
+    box-shadow: none;
+  }
+  90%{
+    background-color: #710000;
+    box-shadow: none;
+  }
+  100%{
+    background-color: rgb(255 0 0 / 25%);
+    box-shadow: 0 0 9px 0 #f00;
+  }
+}
+.circleYellow{
+  background-color: #c3ba00;
+  top: -57px;
+  left: 165px;
+}
+#light-circle2Yellow{
+  animation: circle2YellowBlinks 2s ease 3.25s infinite;
+}
+@keyframes circle2YellowBlinks{
+  0%{
+    background-color: #c3ba00;
+    box-shadow: none;
+  }
+  90%{
+    background-color: #c3ba00;
+    box-shadow: none;
+  }
+  100%{
+    background-color: rgb(247 246 218 / 68%);
+    box-shadow: 0 0 9px 0 rgb(253 255 145);
+  }
+}
+.circleGreen{
+  background-color: #1f743b;
+  top: -79px;
+  left: 195px;
+}
+#light-circle2Green{
+  animation: circle2GreenBlinks 2s ease 3.5s infinite;
+}
+@keyframes circle2GreenBlinks{
+  0%{
+    background-color: #1f743b;
+    box-shadow: none;
+  }
+  90%{
+    background-color: #1f743b;
+    box-shadow: none;
+  }
+  100%{
+    background-color: rgb(247 246 218 / 68%);
+    box-shadow: 0 0 9px 0 rgb(253 255 145);
+  }
+}
+#screen-row{
+  display: flex;
+  height: 350px;
+  justify-content: center;
+}
+#screen-border{
+  background-color: #dedede;
+  border: 1px solid #000000;
+  width: 300px;
+  border-radius: 10px;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+#top-screen-decoration{
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+}
+#bottom-screen-decoration{
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+}
+#screen{
+  background-color: #232323;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 250px;
+  border-radius: 5px;
+}
+#picture-row{
+  display: flex;
+  justify-content: center;
+}
+#picture{
+  height: 230px;
+  width: 250px;
+}
+#screen-row-info{
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 5px;
+  margin-left: 5px;
+}
+#number-pokemon{
+  font-family: 'VT323', monospace;
+  font-size: 25px;
+  color: #ffffff;
+}
+#gender-container{
+  width: 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 10px;
+}
+.gender-icon{
+  color: #7E7E7E;
+  cursor: pointer;
+}
+.gender-active{
+  color: #D6D3BB;
+}
+#circle3{
+  width: 10px;
+  height: 10px;
+  background-color: #dc0a2d;
+  border-radius: 50%;
+  border: 1px solid #000000;
+}
+#circle4{
+  width: 20px;
+  height: 20px;
+  background-color: #dc0a2d;
+  border-radius: 50%;
+  border: 1px solid #000000;
+}
+#name-row{
+  display: flex;
+  justify-content: center;
+}
+#name-container{
+  width: 400px; 
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#name-screen{
+  background-color: #52af5f;
+  height: 45px;
+  width: 150px;
+  border: 1px solid #000000;
+  font-family: 'VT323', monospace;
+  font-size: 25px;
+  display:flex;
+  align-items: center;
+  padding-left: 5px;
+  text-transform: capitalize;
+  box-shadow: inset 1px 1px #306938, inset 2px 2px #000000;
+}
+#arrows-container {
+  display: flex;
+}
+div#upT
+	{
+		width: 0;
+		height: 0;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-bottom: 10px solid #111;
+		position: absolute;
+		top: 5px;
+		left: 4px;
+	}
+
+	div#downT
+	{
+		width: 0;
+		height: 0;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-top: 10px solid #111;
+
+		position: absolute;
+		bottom: 5px;
+		left: 4px;
+	}
+
+	div#leftT
+	{
+		width: 0;
+		height: 0;
+		border-top: 10px solid transparent;
+		border-right: 10px solid #111;
+		border-bottom: 10px solid transparent;
+
+		position: absolute;
+		top: 5px;
+		left: 4px;
+	}
+
+	div#rightT
+	{
+		width: 0;
+		height: 0;
+		border-top: 10px solid transparent;
+		border-left: 10px solid #111;
+		border-bottom: 10px solid transparent;
+
+		position: absolute;
+		top: 5px;
+		right: 5px;
+	}
+
+	div#midCircle
+	{
+		width: 20px;
+		height: 20px;
+
+		position: absolute;
+		top: 5px;
+		left: 4px;
+
+		border-radius: 30px;
+		-webkit-border-radius: 30px;
+		-moz-border-radius: 30px;
+		-o-border-radius: 30px;
+
+		background: radial-gradient(#111, #222);
+		background: -webkit-radial-gradient(#111, #222);
+		background: -moz-radial-gradient(#111, #222);
+		background: -o-radial-gradient(#111, #222);
+	} 
+div#cross
+	{
+		width: 90px;
+		height: 90px;
+
+		position: relative;
+	}
+
+	div#topcross
+	{
+		width: 30px;
+		height: 30px;
+		background-color: #222;
+    cursor: pointer;
+
+		position: absolute;
+		top: 0;
+		left: 30px;
+
+		box-shadow: 3px 2px 0px 0px #010101;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+	}
+  div#topcross:active div#upT{
+    border-bottom: 10px solid #9b9d6e;
+  }
+
+	div#leftcross
+	{
+		width: 30px;
+		height: 30px;
+		background-color: #222;
+		z-index: 1;
+    cursor: pointer;
+
+		position: absolute;
+		left: 0;
+		top: 30px;
+
+		box-shadow: 0px 4px 0px -2px #010101, 
+                1px 6px 0px -2px #010101, 
+                2px 7px 0px -2px #010101;
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+	}
+  div#leftcross:active div#leftT{
+    border-right: 10px solid #9b9d6e;
+  }
+
+	div#midcross
+	{
+		width: 30px;
+		height: 30px;
+		background-color: #222;
+
+		position: absolute;
+		top: 30px;
+		left: 30px;
+
+		box-shadow: -3px 2px #010101;
+		-webkit-box-shadow: -3px 2px #010101;
+		-moz-box-shadow: -3px 2px #010101;
+		-o-box-shadow: -3px 2px #010101;
+	}
+
+	div#rightcross
+	{
+		width: 30px;
+		height: 30px;
+		background-color: #222;
+    cursor: pointer;
+
+		position: absolute;
+		top: 30px;
+		right: 0;
+
+		box-shadow: 1px 3px 0 2px #010101;
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+	}
+  div#rightcross:active div#rightT{
+    border-left: 10px solid #9b9d6e;
+  }
+
+	div#botcross
+	{
+		width: 30px;
+		height: 30px;
+		background-color: #222;
+    cursor: pointer;
+
+		position: absolute;
+		bottom: 0;
+		left: 30px;
+
+		box-shadow: 2px 3px #010101, 3px 4px #010101;
+		border-bottom-left-radius: 5px;
+		border-bottom-right-radius: 5px;
+	}
+  div#botcross:active div#downT{
+    border-top: 10px solid #9b9d6e;
+  }
+
+#buttons-container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#button-red{
+  width: 40px;
+  height: 10px;
+  background-color: #710000;
+  border-radius: 20px;
+  margin-bottom: 3px;
+  border: 1px solid #000000;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 4px;
+  box-shadow: 1px 1px #89061c,
+              2px 2px #89061c,
+              3px 3px #000000;
+  position: relative;
+}
+#button-red:active{
+  box-shadow: none;
+  top: 3px;
+  right: -3px;
+}
+#button-blue{
+  width: 40px;
+  height: 10px;
+  background-color: #146b9f;
+  margin-top: 3px;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 4px;
+  box-shadow: 1px 1px #0f537b,
+              2px 2px #0f537b,
+              3px 3px #000000;
+  position: relative;
+}
+#button-blue:active{
+  box-shadow: none;
+  top: 3px;
+  right: -3px;
+}
+.light{
+  height: 5px;
+  width: 5px;
+  border: 1px solid #232323;
+  border-radius: 50%;
+}
+.on{
+  background-color: #e3e98e;
+}
+.off{
+  background-color: #232323;
+}
+
+#screen-description-row{
+  display:flex;
+  justify-content:center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+#screen-description{
+  width: 100%;
+  height: 120px;
+  background-color: #232323;
+  border: 2px solid #000000;
+  font-family: 'VT323', monospace;
+  font-size: 25px;
+  color: #EAEAEA;
+  padding: 5px;
+  overflow-y: auto;
+}
+#screen-description::-webkit-scrollbar {
+    width: 10px;
+}
+#screen-description::-webkit-scrollbar-button:single-button {
+    display: block;
+    background-size: 10px;
+    background-repeat: no-repeat;
+}
+#screen-description::-webkit-scrollbar-button:single-button:vertical:decrement {
+    height: 12px;
+    width: 16px;
+    background-position: center 4px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(96, 96, 96)'><polygon points='50,00 0,50 100,50'/></svg>");
+}
+#screen-description::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(234, 234, 234)'><polygon points='50,00 0,50 100,50'/></svg>");
+}
+#screen-description::-webkit-scrollbar-button:single-button:vertical:increment {
+    height: 12px;
+    width: 16px;
+    background-position: center 2px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(96, 96, 96)'><polygon points='0,0 100,0 50,50'/></svg>");
+}
+#screen-description::-webkit-scrollbar-button:single-button:vertical:increment:hover {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(234, 234, 234)'><polygon points='0,0 100,0 50,50'/></svg>");
+}
+
+#numbers-buttons-row{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.number-button{
+  width: 19%;
+  height: 25px;
+  background-color: #2AAAFC;
+  border: 1px solid #000000;
+  cursor: pointer;
+  text-align: center;
+  padding-top: 10px;
+  font-family: 'Odibee Sans', cursive;
+  font-size: 19px;
+}
+.number-button:hover{
+  text-shadow: 0px 0px 4px #ffffef;
+  color: #fff8c3;
+}
+#decoration-buttons{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+#deco-button{
+  width: 50px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #222222;
+  border: 1px solid #000000;
+  margin-right: 6px;
+}
+#types-row{
+  display:flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+#types-container{
+  display: flex;
+}
+#type-box{
+  width: 85px;
+  height: 50px;
+  background-color: #DEDEDE;
+  border: 2px solid #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#deco-light{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #DAD33C;
+  border: 2px solid #000000;
+}
+.type-pokemon{
+  width: 48px;
+  height: 16px;
+}
+#extra-info-pokemon-row{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.extra-info-screen{
+  width: 175px;
+  height: 50px;
+  background-color: #232323;
+  border: 2px solid #000000;
+  font-family: 'VT323', monospace;
+  font-size: 28px;
+  color: #EAEAEA;
+  padding-top: 20px;
+  padding-left: 5px;
+}
+
+</style>      
+<script>
+    /* TYPE ASSETS */
+function getAssetTypeEn(type){
+  switch(type){
+    case 'normal':
+      return 'https://cdn2.bulbagarden.net/upload/3/39/NormalIC_Big.png';
+    case 'fighting':
+      return 'https://cdn2.bulbagarden.net/upload/6/67/FightingIC_Big.png';
+    case 'flying':
+      return 'https://cdn2.bulbagarden.net/upload/c/cb/FlyingIC_Big.png';
+    case 'poison':
+      return 'https://cdn2.bulbagarden.net/upload/3/3d/PoisonIC_Big.png';
+    case 'ground':
+      return 'https://cdn2.bulbagarden.net/upload/8/8f/GroundIC_Big.png';
+    case 'rock':
+      return 'https://cdn2.bulbagarden.net/upload/c/ce/RockIC_Big.png';
+    case 'bug':
+      return 'https://cdn2.bulbagarden.net/upload/c/c8/BugIC_Big.png';
+    case 'ghost':
+      return 'https://cdn2.bulbagarden.net/upload/7/73/GhostIC_Big.png';
+    case 'steel':
+      return 'https://cdn2.bulbagarden.net/upload/d/d4/SteelIC_Big.png';
+    case 'fire':
+      return 'https://cdn2.bulbagarden.net/upload/2/26/FireIC_Big.png';
+    case 'water':
+      return 'https://cdn2.bulbagarden.net/upload/5/56/WaterIC_Big.png';
+    case 'grass':
+      return 'https://cdn2.bulbagarden.net/upload/7/74/GrassIC_Big.png';
+    case 'electric':
+      return 'https://cdn2.bulbagarden.net/upload/4/4a/ElectricIC_Big.png';
+    case 'psychic':
+      return 'https://cdn2.bulbagarden.net/upload/6/60/PsychicIC_Big.png';
+    case 'ice':
+      return 'https://cdn2.bulbagarden.net/upload/6/6f/IceIC_Big.png';
+    case 'dragon':
+      return 'https://cdn2.bulbagarden.net/upload/4/48/DragonIC_Big.png';
+    case 'dark':
+      return 'https://cdn2.bulbagarden.net/upload/5/56/DarkIC_Big.png';
+    case 'fairy':
+      return 'https://cdn2.bulbagarden.net/upload/d/df/Picross_FairyIC.png';
+    default:
+      return 'https://cdn2.bulbagarden.net/upload/3/3c/UnknownIC_Big.png';
+  }
+}
+function getAssetTypeEs(type){
+  switch(type){
+    case 'normal':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/3/32/latest/20170114100442/Tipo_normal.gif';
+    case 'fighting':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/b/b7/latest/20170114100336/Tipo_lucha.gif';
+    case 'flying':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/e/e1/latest/20191118232224/Tipo_volador.gif';
+    case 'poison':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/1/10/latest/20191118232220/Tipo_veneno.gif';
+    case 'ground':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/1/1d/latest/20191118232216/Tipo_tierra.gif';
+    case 'rock':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/e/e0/latest/20170114100446/Tipo_roca.gif';
+    case 'bug':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/f/fe/latest/20191118232226/Tipo_bicho.gif';
+    case 'ghost':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/4/47/latest/20170114100329/Tipo_fantasma.gif';
+    case 'steel':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/d/d9/latest/20191118232245/Tipo_acero.gif';
+    case 'fire':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/c/ce/latest/20170114100331/Tipo_fuego.gif';
+    case 'water':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/9/94/latest/20191118232235/Tipo_agua.gif';
+    case 'grass':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/d/d6/latest/20170114100444/Tipo_planta.gif';
+    case 'electric':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/1/1b/latest/20170114100155/Tipo_el%C3%A9ctrico.gif';
+    case 'psychic':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/1/15/latest/20170114100445/Tipo_ps%C3%ADquico.gif';
+    case 'ice':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/4/40/latest/20170114100333/Tipo_hielo.gif';
+    case 'dragon':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/0/01/latest/20170114100154/Tipo_drag%C3%B3n.gif';
+    case 'dark':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/8/82/latest/20191118232327/Tipo_siniestro.gif';
+    case 'fairy':
+      return 'https://images.wikidexcdn.net/mwuploads/wikidex/b/bc/latest/20170114100332/Tipo_hada.gif';
+    default:
+      return 'https://cdn2.bulbagarden.net/upload/3/3c/UnknownIC_Big.png';
+  }
+}
+
+var numPokemon = 1;
+var frontView = true;
+var shiny = false;
+var gender = 'male';
+var urlImage = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png';
+var language = 'en';
+var number = null;
+var clickedNumber2 = false;
+var clickedNumber3 = false;
+const lastPokemon = 898;
+
+function setNameDescriptionTypes(){
+  fetch("https://pokeapi.co/api/v2/pokemon/" + numPokemon)
+    .then((response) => response.json())
+    .then((data) => {
+      // Set Name
+      document.getElementById("name-screen").innerHTML= data.name;
+      // Set Type
+      if(data.types.length > 0){
+        if(language === 'en'){
+          document.getElementById("type1").src = getAssetTypeEn(data.types[0].type.name)
+        }
+        if(language === 'es'){
+          document.getElementById("type1").src = getAssetTypeEs(data.types[0].type.name)
+        }
+        
+      }
+      if(data.types.length > 1){
+        if(language === 'en'){
+          document.getElementById("type2").src = getAssetTypeEn(data.types[1].type.name)
+        }
+        if(language === 'es'){
+          document.getElementById("type2").src = getAssetTypeEs(data.types[1].type.name)
+        }
+        
+      } else {
+        document.getElementById("type2").src = ''
+      }
+      // Set Height and Weight
+      if(language === 'en'){
+        document.getElementById("extra-info-screen-1").innerHTML= 'Height: ' + data.height/10 + ' m';
+        document.getElementById("extra-info-screen-2").innerHTML= 'Weight: ' + data.weight/10 + ' kg';
+      }
+      if(language === 'es'){
+        document.getElementById("extra-info-screen-1").innerHTML= 'Altura: ' + data.height/10 + ' m';
+        document.getElementById("extra-info-screen-2").innerHTML= 'Peso: ' + data.weight/10 + ' kg';
+      }
+    });
+  fetch("https://pokeapi.co/api/v2/pokemon-species/" + numPokemon)
+    .then((response) => response.json())
+    .then((data) => {
+      // Set description of Pokemon
+      if(data.flavor_text_entries.find((text_entry) => text_entry.language.name === language)){
+        var description = data.flavor_text_entries.find((text_entry) => text_entry.language.name === language).flavor_text;
+        description = description.replace(/\n/g, ' ').replace(/\f/g, ' ');
+        document.getElementById("screen-description").innerHTML= description;
+      } else {
+        var description = data.flavor_text_entries.find((text_entry) => text_entry.language.name === 'en').flavor_text;
+        description = description.replace(/\n/g, ' ').replace(/\f/g, ' ');
+        document.getElementById("screen-description").innerHTML= description;
+      }
+    });
+}
+
+async function setURLimage(){
+  var url = ''
+  if(gender === 'male'){
+    url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon";
+    if (!frontView) {
+      url = url + "/back";
+    }
+    if (shiny) {
+      url = url + "/shiny";
+    }
+    url = url + "/" + numPokemon + ".png";
+  } else {
+     await fetch("https://pokeapi.co/api/v2/pokemon/" + numPokemon)
+      .then((response) => response.json())
+      .then((data) => {
+        if(data.sprites.front_female !== null && gender === 'female'){
+          console.log('Entro en el primer if')
+          if(frontView){
+            if(shiny){
+              url = data.sprites.front_shiny_female;
+            } else {
+              url = data.sprites.front_female;
+            }
+          } else {
+            if(shiny){
+              url = data.sprites.back_shiny_female;
+            } else {
+              url = data.sprites.back_female;
+            }
+          }
+        } else {
+          if(frontView){
+            if(shiny){
+              url = data.sprites.front_shiny;
+            } else {
+              console.log(data.sprites.front_default);
+              url = data.sprites.front_default;
+            }
+          } else {
+            if(shiny){
+              url = data.sprites.back_shiny;
+            } else {
+              url = data.sprites.back_default;
+            }
+          }
+        }
+      });
+  }
+  document.getElementById("picture").src= url
+}
+
+function getNumLength(number) {
+    return number.toString().length;
+}
+
+function setNumPokemon(num){
+  if(num > lastPokemon || num === 0){
+    numPokemon = 1;
+  } else {
+    numPokemon = num;
+  }
+  if(getNumLength(numPokemon) === 1){
+    document.getElementById("number-pokemon").innerHTML = '00' + numPokemon;
+  } else if(getNumLength(numPokemon) === 2){
+    document.getElementById("number-pokemon").innerHTML = '0' + numPokemon;
+  } else {
+   document.getElementById("number-pokemon").innerHTML = numPokemon; 
+  }
+}
+
+function setGender(gen){
+  gender = gen;
+  if(gender === 'female'){
+    document.getElementById("male-icon").classList.remove("gender-active");
+    document.getElementById("female-icon").classList.add("gender-active");
+  } else {
+    document.getElementById("male-icon").classList.add("gender-active");
+    document.getElementById("female-icon").classList.remove("gender-active");
+  }
+  setURLimage();
+}
+
+function clickLeftRight(){
+  frontView = !frontView;
+  setURLimage();
+}
+
+function clickUp(){
+  if (numPokemon === 1) {
+    setNumPokemon(lastPokemon)
+  } else {
+    setNumPokemon(numPokemon - 1)
+  }
+  setURLimage();
+  setNameDescriptionTypes();
+}
+
+function clickBottom(){
+  if (numPokemon === lastPokemon) {
+    setNumPokemon(1);
+  } else {
+    setNumPokemon(numPokemon + 1);
+  }
+  setURLimage();
+  setNameDescriptionTypes();
+}
+
+function clickNormalColor(){
+  shiny = false;
+  setURLimage();
+  document.getElementById("light-button-red").classList.remove("off");
+  document.getElementById("light-button-red").classList.add("on");
+  document.getElementById("light-button-blue").classList.add("off");
+  document.getElementById("light-button-blue").classList.remove("on");
+}
+
+function clickShinyColor(){
+  shiny = true;
+  setURLimage();
+  document.getElementById("light-button-red").classList.remove("on");
+  document.getElementById("light-button-red").classList.add("off");
+  document.getElementById("light-button-blue").classList.add("on");
+  document.getElementById("light-button-blue").classList.remove("off");
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function clickNumber(num){
+  if(!clickedNumber3){
+    if(number === null){
+      number = num;
+    } else {
+      if(number.length < 3){
+        number = number + num;
+      }
+      if(number.length === 2){
+        clickedNumber2 = true;
+      }
+      if(number.length === 3){
+        clickedNumber3 = true;
+      }
+    }
+    if(language === 'en'){
+      document.getElementById("screen-description").innerHTML = "Search for pokémon: " + number;
+    }
+    if(language === 'es'){
+      document.getElementById("screen-description").innerHTML = "Buscar pokémon: " + number;
+    }
+    sleep(3000).then(() => {
+      if((number.length === 1 && !clickedNumber2) || (number.length === 2 && !clickedNumber3) || number.length === 3){
+        if(language === 'en'){
+          document.getElementById("screen-description").innerHTML = "Searching...";
+        }
+        if(language === 'es'){
+          document.getElementById("screen-description").innerHTML = "Buscando...";
+        }
+        setNumPokemon(parseInt(number, 10));
+        number = null;
+        setURLimage();
+        setNameDescriptionTypes();
+        clickedNumber2 = false;
+        clickedNumber3 = false;
+      } 
+    });
+  }
+}
+
+function changeLanguage(newLanguage){
+  language = newLanguage.value;
+  setNameDescriptionTypes();
+}
+
+setURLimage()
+setNameDescriptionTypes()
+
+document.addEventListener("contextmenu", function(e){
+  e.preventDefault();
+}, false);
+
+document.onkeydown = function (event) {
+        event = (event || window.event);
+        if (event.keyCode == 123) {
+            return false;
+        }
+    }
+
+    document.onkeydown = function (event) {
+        event = (event || window.event);
+        if (event.keyCode == 44) {
+            return false;
+        }
+    }
+
+</script>
+<input type="text" placeholder="Your Pokemon">
+<p>
+    or click on the img  below
+</p>
+<header>
+    <h1>Guess</h1>
+    <h2 id="text">I will guess the pokemon</h2>
+</header>
+
+<div class="cookie-container">
+    <img class="cookie" id="cookie" src="./Screenshot 2022-01-20 153622.jpg" alt="">
+</div>
+<footer>
+
+
+    <script>
+        const fortuneText = ["is it #6", "is it #4" , "is it #898" , " is it#701", "is it #101", "is it#226", "is it#558", "is it #678", "is it #890", "is it #658", "i give up"];
+const cookie = document.getElementById("cookie");
+const text = document.getElementById("text");
+
+cookie.onclick = () => {
+    let i = Math.floor(Math.random() * fortuneText.length);
+    text.innerHTML = fortuneText[i];
+}
+
+    </script>
+</body>
+</html>
